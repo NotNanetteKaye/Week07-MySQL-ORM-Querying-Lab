@@ -298,43 +298,41 @@ def problem_six(request):
   print(f'ID: {new_student.ID} \n Full Name: {new_student.first_name} {new_student.last_name} GPA: {new_student.gpa}')
 
     # Make sure to set this equal to the primary key of the row you just created!
-    student_id = 11
+    # student_id = 11
 
-    return complete(request)
+    # return complete(request)
 
 
 # Supporting Query Method Documentation:
-"""
-https://docs.djangoproject.com/en/4.0/ref/models/querysets/#update
-"""
+
 
 # Expected Terminal Response:
-"""
-Id: 11
-Full Name: Kyle Harwood
-GPA: 3.5
-"""
+# """
+# Id: 11
+# Full Name: Kyle Harwood
+# GPA: 3.5
+# """
 
 # Expected Resulting SQL Query (Found in "SQL" section of the debug toolbar in browser):
-"""
-# Query One:
+# """
+# # Query One:
 
-UPDATE `school_db_student`
-# NOTE: The gpa value will be what you chose
-   SET `gpa` = 3.5
- WHERE `school_db_student`.`id` = 11
+# UPDATE `school_db_student`
+# # NOTE: The gpa value will be what you chose
+#    SET `gpa` = 3.5
+#  WHERE `school_db_student`.`id` = 11
 
-# Query Two:
+# # Query Two:
 
-SELECT `school_db_student`.`id`,
-    `school_db_student`.`first_name`,
-    `school_db_student`.`last_name`,
-    `school_db_student`.`year`,
-    `school_db_student`.`gpa`
-FROM `school_db_student`
-WHERE `school_db_student`.`id` = 11
-LIMIT 21
-"""
+# SELECT `school_db_student`.`id`,
+#     `school_db_student`.`first_name`,
+#     `school_db_student`.`last_name`,
+#     `school_db_student`.`year`,
+#     `school_db_student`.`gpa`
+# FROM `school_db_student`
+# WHERE `school_db_student`.`id` = 11
+# LIMIT 21
+# """
 
 
 # <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
