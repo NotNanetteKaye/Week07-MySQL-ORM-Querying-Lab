@@ -1,3 +1,4 @@
+from xml.etree.ElementTree import QName
 from django.shortcuts import render
 from django.db.models import Count
 from django.core.exceptions import ObjectDoesNotExist
@@ -59,7 +60,7 @@ SELECT `school_db_student`.`id`,
 # Print out each student's full name and gpa to the terminal
 def problem_one(request):
 
-    straight_a_gpas = Student.objects.filter(gpa__gt=3.0).order_by(-gpa)
+    straight_a_gpas = Student.objects.filter(gpa__gt=3.0).order_by('-gpa')
 
     for gpa in straight_a_gpas:
         print(f'Full Name: {gpa.first_name} {gpa.last_name} GPA: {gpa.gpa}')
@@ -103,12 +104,12 @@ SELECT `school_db_student`.`id`,
 # Print out the instructor's full name and hire date to the terminal
 def problem_two(request):
 
-  instructors = Instructor.objects.filter(hire_date__lt=2010-31-12).order_by(hire_date__year=2010)
+    instructors = Instructor.objects.filter(hire_date__lt=2010-31-12).order_by(hire_date__year=2010)
 
-  for instructor in instructors:
-    print(
-    f'Full Name: {instructor.first_name} {instructor.last_name} Hire Date: {instructor.hire_date}'
-    )
+    for instructor in instructors:
+      print(
+        f'Full Name: {instructor.first_name} {instructor.last_name} Hire Date: {instructor.hire_date}'
+        )
 
     return complete(request)
 
@@ -151,7 +152,7 @@ SELECT `school_db_instructor`.`id`,
 # (Do not hard code his name in the print)
 def problem_three(request):
 
-  courses = Course.objects.filter(pk=2).get()
+  courses = Course.objects.filter(pk=2).get(QName(first_name=2) & QName(last_name=2))
 
   for course in courses:
     print(
@@ -346,7 +347,7 @@ def problem_seven(request):
     Student.objects.filter(pk = 11).delete()
 
     try:
-        student = Student.objects.get(pk=student_id)
+        student = Student.objects.get(pk=11)
     except ObjectDoesNotExist:
         print('Great! It failed and couldnt find the object because we deleted it!')
 
