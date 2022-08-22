@@ -1,3 +1,5 @@
+from bisect import insort_right
+import pkgutil
 from xml.etree.ElementTree import QName
 from django.shortcuts import render
 from django.db.models import Count
@@ -152,9 +154,11 @@ SELECT `school_db_instructor`.`id`,
 # (Do not hard code his name in the print)
 def problem_three(request):
 
-  courses = Course.objects.filter(instructor_id=2)
+  # courses = Course.objects.filter(instructor_id ='2')
+  instructors = Instructor.objects.get(pk = '2')
+
   print(
-    f'Instructor Name: {courses.instructor}, Courses: - {courses.name} - {courses.name}'
+    f'Instructor Name: {instructors.first_name} {instructors.last_name}, Courses: - {Course.name}'
     )
 
   return complete(request)
@@ -289,10 +293,10 @@ VALUES ('Kyle', 'Harwood', 2022, 3.0)
 # Print the new student's id, full name, and gpa to the terminal
 def problem_six(request):
 
-  Student.objects.filter('id'==11).update('gpa'==3.5)
-  new_student = Student.objects.get(pk=11)
+  Student.objects.filter(id = '11').update(gpa = '3.5')
+  new_student = Student.objects.get(id = '11')
 
-  print(f'Id: {new_student.ID} \n Full Name: {new_student.first_name} {new_student.last_name} GPA: {new_student.gpa}')
+  print(f'ID: {new_student.id} \n Full Name: {new_student.first_name} {new_student.last_name} GPA: {new_student.gpa}')
 
     # Make sure to set this equal to the primary key of the row you just created!
     # student_id = 11
